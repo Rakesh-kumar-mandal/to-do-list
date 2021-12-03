@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <title>To do List</title>
+   <style>
+       
+        body{
+            background-image: url("https://cdn.pixabay.com/photo/2021/11/17/13/48/star-6803666_960_720.jpg");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .main{
+            width: 650px;
+            margin: 130px auto;
+            text-align: center;
+            box-shadow: 0 0 10px black;
+            padding: 38px;
+            color:rgba(255,0,0,0.5);
+           border-radius: 25px;
+           height: auto;
+        }
+      
+        div{
+            text-align: center;
+            padding-left: 60px;
+            padding-bottom: 15px;
+        }   
+        button{
+            margin-left: 15px;
+            border-radius: 28px;
+        }
+        button:hover{
+            background-color:rgb(48, 238, 228);
+        }
+        span{
+            margin-left: -57px;
+            color:burlywood;
+           
+        
+        }
+        h1{
+            color:burlywood;
+        }
+        
+        input{
+            border-radius: 30px;
+        }
+        label{
+            font-size: 40px;
+           
+            color: rgb(212, 248, 10);
+        }
+
+   </style>
+</head>
+
+<body>
+    <div class="main">
+    <h1><span class="title">ToDo</span> List</h1>
+    <div class="inputDiv">
+    	 <label> Enter Text:</label> <input type="text" class="input">
+    	   <button class="add">Add New Element</button><br>
+           <span id="error"></span>
+    </div>
+    <div class="container">
+    </div>
+    <script>
+        const container = document.querySelector('.container');
+var inputValue = document.querySelector('.input');
+const add = document.querySelector('.add');
+class item{
+constructor(name){
+this.createItem(name);
+}
+createItem(name){
+var itemBox = document.createElement('div');
+itemBox.classList.add('item');
+
+var input = document.createElement('input');
+input.type = "text";
+input.disabled = true;
+input.value = name;
+input.classList.add('item_input');
+
+var edit = document.createElement('button');
+edit.classList.add('edit');
+edit.innerHTML = "Edit";
+edit.addEventListener('click', () => this.edit(input, name));
+
+var remove = document.createElement('button');
+remove.classList.add('remove');
+remove.innerHTML = "Remove";
+remove.addEventListener('click', () => this.remove(itemBox, name));
+
+container.appendChild(itemBox);
+
+itemBox.appendChild(input);
+itemBox.appendChild(edit);
+itemBox.appendChild(remove);
+
+}
+
+edit(input, name){
+if(input.disabled == true){
+   input.disabled = !input.disabled;
+}
+else{
+    input.disabled = !input.disabled;
+   
+}
+}
+
+ remove(itemBox, name){
+itemBox.parentNode.removeChild(itemBox);
+ }
+}
+
+add.addEventListener('click', check);
+window.addEventListener('keydown', (e) => {
+if(e.which == 13){
+check();
+}
+})
+
+function check(){
+if(inputValue.value=="")
+    {
+        document.getElementById("error").innerHTML="Please Enter the value";
+        return;
+    } else
+    {
+        document.getElementById("error").innerHTML="";
+        new item(inputValue.value);
+    }
+}
+for (var v = 0 ; v < input.length ; v++){
+new item(input[v]);
+}
+    </script>
+</div>             
+</body>
+</html>
